@@ -12,10 +12,21 @@ const userSchema= mongoose.Schema({
         type:String,
         unique:true
     },
-    age:Number,
+    age:{
+        type:Number,
+        maxlength:3,
+        minlength:1
+    },
     name:String,
-    mobile:Number,
-    password:String
+    mobile:{
+        minlength:10,
+        maxlength:10,
+        type:Number
+    },
+    password:{
+        required:true,
+        type:String
+    }
 })
 userSchema.pre("save",async function(next){
     if(this.isModified("password")){
@@ -68,7 +79,7 @@ app.get("/login",pagination(mo1),async(req,res)=>{
             res.json({message:"sent"})
         }
         else{
-            res.json({message:"not found"})
+            res.json({message:"invalid credentials"})
         }
        
       })
