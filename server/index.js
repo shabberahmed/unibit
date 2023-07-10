@@ -19,8 +19,8 @@ const userSchema= mongoose.Schema({
     },
     name:String,
     mobile:{
-        minlength:10,
-        maxlength:10,
+        // minlength:10,
+        // maxlength:10,
         type:Number
     },
     password:{
