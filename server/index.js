@@ -19,8 +19,7 @@ const userSchema= mongoose.Schema({
     },
     name:String,
     mobile:{
-        // minlength:10,
-        // maxlength:10,
+      
         type:Number
     },
     password:{
@@ -34,7 +33,6 @@ userSchema.pre("save",async function(next){
     }
     next()
 })
-
 const xtra=mongoose.model("onein",userSchema)
 const sc1=mongoose.Schema({
     r1:Object,
@@ -73,7 +71,7 @@ app.get("/login",pagination(mo1),async(req,res)=>{
         const{email,password}=req.body
         console.log(req.body,"this is body")
         const result = await xtra.findOne({email})
-        console.log(result,"this is result"); // Add this line
+        console.log(result,"this is result"); 
         const ism = await bcrypt.compare(password, result.password);        
         if(ism){
             res.json({message:"sent"})
@@ -118,6 +116,4 @@ app.get("/login",pagination(mo1),async(req,res)=>{
           next()
         }
     }
-   
-
 app.listen(4000,()=>console.log("server started on port 4000"))
